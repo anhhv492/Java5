@@ -1,4 +1,4 @@
-package com.example.demo.method;
+package com.example.demo.model;
 
 public class Student {
 	private long id;
