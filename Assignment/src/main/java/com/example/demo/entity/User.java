@@ -11,7 +11,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table
+@Table(name="user")
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,26 +19,31 @@ public class User {
 	@Column
 	private String avatar;
 
-	@Column(name = "user_name")
-	private String userName;
+	@Column(name = "name")
+	private String name;
 
+	@Column
 	private String location;
 
+	@Column
 	private String phone;
 
+	@Column
 	private int gender;
-	
+
+	@Column
 	private String email;
-	
+
+	@Column
 	private String password;
-	
+
+	@Column
 	private int role;
 
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "users")
 	private List<Category> listCategory;
 
 	public User() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public int getId() {
@@ -57,12 +62,12 @@ public class User {
 		this.avatar = avatar;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getName() {
+		return name;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getLocation() {

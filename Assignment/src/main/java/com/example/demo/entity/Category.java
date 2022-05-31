@@ -2,6 +2,7 @@ package com.example.demo.entity;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,17 +13,23 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table
+@Table(name="category")
 public class Category {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
+	@Column
 	private String name;
-
+	
+	@OneToMany(mappedBy ="category")
+	private List<Towel> listTowel;
+	
+	
+	// pk user
 	@ManyToOne
 	@JoinColumn(name = "user_id")
-	private User user;
+	private User users;
 	
 	public Category() {
 		// TODO Auto-generated constructor stub
@@ -44,16 +51,23 @@ public class Category {
 		this.name = name;
 	}
 
-	public User getUser() {
-		return user;
+	public User getUsers() {
+		return users;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUsers(User users) {
+		this.users = users;
 	}
 
-//	@OneToMany(mappedBy = "category")
-//	private List<Product> listProduct;
+	public List<Towel> getListTowel() {
+		return listTowel;
+	}
+
+	public void setListTowel(List<Towel> listTowel) {
+		this.listTowel = listTowel;
+	}
+
+	
 
 
 }
