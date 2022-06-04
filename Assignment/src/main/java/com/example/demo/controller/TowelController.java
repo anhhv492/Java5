@@ -42,54 +42,44 @@ public class TowelController {
 	@Autowired
 	ITowelRepository service;
 
-	private static Integer idp=null;
-	// getall ()
-	@GetMapping("/get-all")
-	public String towelView(Model model) {
-		List<Category> listCate = cateService.getAll();
-		model.addAttribute("listCate",listCate);
-		model.addAttribute("listPro",towelService.getAll());
-		return "admin/towel/index";
-	}
+	private static Integer idu=null;
 	// pagination (start form)
-	@GetMapping("/pagination")
-	public String next(Model model,@RequestParam("page") Optional<Integer> page) {
-		Pageable pageable = PageRequest.of(page.orElse(0), 7);
-		Page<Towel> pages =service.findAll(pageable);
-		List<Category> listCate = cateService.getAll();
-		model.addAttribute("listCate",listCate);
-		model.addAttribute("listPro",pages);
-		System.out.println("as");
-		return "admin/towel/index";
-	}
+	
 	// form insert
 	@GetMapping("/new")
+	
 	public String productNew(Model model) {
 		List<Category> listCate = cateService.getAll();
 		model.addAttribute("listCate",listCate);
-		return "admin/towel/create";
+		Towel twl = new Towel();
+		model.addAttribute("towelModel",twl);
+		model.addAttribute("view","/WEB-INF/views/admin/towel/create.jsp");
+		return "layout";
 	}
 	// insert
 	@PostMapping("/insert")
 	public String insertPro(@ModelAttribute("towelModel") Towel product) {
 		towelService.insert(product);
-		return "redirect:/towel/pagination";
+		return "redirect:/towel/get-all";
 	}
 	//form update
 	@GetMapping("/update")
-	public String productViewUpdate(@RequestParam("id") Integer id,Model model) {
+	public String productViewUpdate(@RequestParam("id") Integer ids,Model model) {
 		List<Category> listCate = cateService.getAll();
 		model.addAttribute("listCate",listCate);
-		idp=id;
-		return "admin/towel/update";
+		idu=ids;
+		Optional<Towel> twl = towelService.selectById(idu);
+		model.addAttribute("towelModel",twl);
+		model.addAttribute("view","/WEB-INF/views/admin/towel/update.jsp");
+		return "layout";
 	}
 	//update
 	@RequestMapping(value = "/store",method = RequestMethod.POST)
 	public String updateTowel(Model model,@ModelAttribute("towelModel")Towel towel) {
-		towel.setId(idp);
+		towel.setId(idu);
 		towelService.update(towel);
 		model.addAttribute("listPro",towelService.getAll());
-		return "redirect:/towel/pagination";
+		return "redirect:/towel/get-all";
 	}
 	
 	// delete
@@ -99,7 +89,7 @@ public class TowelController {
 		List<Category> listCate = cateService.getAll();
 		model.addAttribute("listCate",listCate);
 		model.addAttribute("listPro",towelService.getAll());
-		return "redirect:/towel/pagination";
+		return "redirect:/towel/get-all";
 	}
 	//select towel by cateId
 	@RequestMapping("/select/{cateId}")
@@ -111,5 +101,11 @@ public class TowelController {
 		model.addAttribute("listCate",listCate);
 		return "admin/towel/show";
 	}
-	
+	@PostMapping("/checkAll")
+	public String checkAll(Model model) {
+		model.addAttribute("checkAll","checkAll");
+		List<Towel> list = towelService.getAll();
+		model.addAttribute("list",list);
+		return "admin/towel/index";
+	}
 }
