@@ -10,28 +10,38 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.Nationalized;
 
 @Entity
-@Table
-public class Product {
+@Table(name="towel")
+public class Towel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	@Column
 	private int price;
-	
+	@Column
 	private String img;
+	@Column
 	private String size;
+	@Column
 	private String color;
-
+	@Column
+	private String matter;
+	@Column
 	private int count;
+	@Column
 	private String name;
 	@Column(name="created_date")
 	private Date createdDate;
-	private ProductType type;
 	
-	public Product() {
+	@ManyToOne
+	@JoinColumn(name="category_Id")
+	private Category category;
+	
+	public Towel() {
 		// TODO Auto-generated constructor stub
 	}
 	public int getId() {
@@ -82,12 +92,19 @@ public class Product {
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
-	public ProductType getType() {
-		return type;
+	public Category getCategory() {
+		return category;
 	}
-	public void setType(ProductType type) {
-		this.type = type;
+	public void setCategory(Category categoryId) {
+		this.category = categoryId;
 	}
+	public String getMatter() {
+		return matter;
+	}
+	public void setMatter(String matter) {
+		this.matter = matter;
+	}
+	
 	
 	
 //	@ManyToOne
