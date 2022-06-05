@@ -3,17 +3,7 @@
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt"%>
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-		 integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" 
-		integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
-	</script>
-</head>
-<body class="container m-auto">
+<div class="me-3 ms-3" >
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
 		<div class="container-fluid">
 			<a href="/towel/new" class="btn btn-primary navbar-brand">Thêm mới</a>
@@ -69,7 +59,30 @@
 				<td>${list.category.name}</td>
 				<td>
 					<a href="/towel/update?id=${list.id}" class="btn btn-warning">Chọn</a>
-					<a href="/towel/delete?id=${list.id}" class="btn btn-danger">Xóa</a>
+					<!-- Button trigger modal -->
+					<button type="button" data-bs-target="#id${list.id}" class="btn btn-danger" data-bs-toggle="modal">
+					  Xóa
+					</button>
+					
+					<!-- Modal -->
+					<div class="modal fade text-dark" id="id${list.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					  <div class="modal-dialog">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <h5 class="modal-title" id="exampleModalLabel">Bạn có muốn xóa?</h5>
+					        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					      </div>
+					      <div class="modal-body">
+					        Xóa không thể khôi phục lại!
+					      </div>
+					      <div class="modal-footer"> 
+					      	<a href="/towel/delete?id=${list.id}" class="btn btn-primary">Xác nhận!</a>
+					     
+					        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>		
+					      </div>
+					    </div>
+					  </div>
+					</div>
 				</td>
 			</tr>
 		</c:forEach>
@@ -77,11 +90,10 @@
 	</table>	
 	<nav aria-label="Page navigation example">
   <ul class="pagination justify-content-center">
-    <li class="page-item"><a class="page-link" href="/towel/pagination?page=0">First</a></li>
-    <li class="page-item"><a class="page-link" href="/towel/pagination?page=${listPro.number-1}">Prev</a></li>
-    <li class="page-item"><a class="page-link" href="/towel/pagination?page=${listPro.number+1}">Next</a></li>
-    <li class="page-item"><a class="page-link" href="/towel/pagination?page=${listPro.totalPages-1}">Last</a></li>
+    <li class="page-item"><a class="page-link" href="/towel/get-all?page=0">First</a></li>
+    <li class="page-item"><a class="page-link" href="/towel/get-all?page=${listPro.number-1}">Prev</a></li>
+    <li class="page-item"><a class="page-link" href="/towel/get-all?page=${listPro.number+1}">Next</a></li>
+    <li class="page-item"><a class="page-link" href="/towel/get-all?page=${listPro.totalPages-1}">Last</a></li>
   </ul>
 </nav>
-</body>
-</html>
+</div>

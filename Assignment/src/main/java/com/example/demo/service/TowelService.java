@@ -28,10 +28,10 @@ public class TowelService {
 		return (List<Towel>) repository.findAll(page);
 	}
 	// insert row
-	public void insert(Towel product) {
+	public void insert(Towel towel) {
 		Date now = new Date();
-		product.setCreatedDate(now);
-		repository.save(product);
+		towel.setCreatedDate(now);
+		repository.save(towel);
 	}
 
 	// Update row
