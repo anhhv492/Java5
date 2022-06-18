@@ -26,13 +26,16 @@
 <!-- Start Banner Hero -->
 <div id="template-mo-zay-hero-carousel" class="carousel slide"
 	data-bs-toggle="carousel">
+	
 	<c:if test="${!empty sessionScope.createSuccess }">
 			<div class="alert alert-success">
 				${sessionScope.createSuccess }
 			</div> 
 			<c:remove var="createSuccess" scope="session"/>
 	</c:if>
+	
 	<c:if test="${!empty sessionScope.loginSuccess }">
+	
 			<div class="alert alert-success">
 				${sessionScope.loginSuccess }
 			</div> 
@@ -62,7 +65,7 @@
 					<div class="col-lg-6 mb-0 d-flex align-items-center">
 						<div class="text-align-left align-self-center">
 							<h1 class="h1 text-success">
-								Shop quần áo phù hợp với mọi lứa tuổi
+								Shop tổng hợp các thể loại khăn
 							</h1>
 							<h3 class="h2">Tiny and Perfect eCommerce Template</h3>
 							<p>
