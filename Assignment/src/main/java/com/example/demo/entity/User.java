@@ -42,6 +42,17 @@ public class User {
 
 	@OneToMany(mappedBy = "users")
 	private List<Category> listCategory;
+	
+	@OneToMany(mappedBy = "userId")
+	private List<Order> listOrder;
+
+	public List<Order> getListOrder() {
+		return listOrder;
+	}
+
+	public void setListOrder(List<Order> listOrder) {
+		this.listOrder = listOrder;
+	}
 
 	public User() {
 	}

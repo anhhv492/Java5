@@ -14,10 +14,10 @@
 	<link rel="stylesheet" href="/css/fontawesome.min.css">
 	<!-- load  login, sign up -->
 	<link rel="stylesheet" href="/fonts/material-icon/css/material-design-iconic-font.min.css">
-	<script src="sweetalert2.min.js"></script>
-	<link rel="stylesheet" href="sweetalert2.min.css">
+    <script src="js/sweetalert2.min.js"></script>
 </head>
 <body>
+
 <nav
 		class="navbar navbar-expand-lg bg-dark navbar-light d-none d-lg-block"
 		id="templatemo_nav_top">
@@ -59,24 +59,35 @@
 			</button>
 
 			<div
-				class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between"
+				class="align-self-center collapse navbar-collapse flex-fill d-lg-flex justify-content-lg-between"
 				id="templatemo_main_nav">
+				
 				<div class="flex-fill ">
 				
 					<ul
 						class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
 						<li class="nav-item"><a class="nav-link"
-							href="/home">Trang chủ</a></li>
-						<li class="nav-item">
-							<a class="nav-link" href="/PH14045_HaVietAnh_Assignment/user/shop">Giới thiệu</a>
+							href="/home">Trang chủ</a>
 						</li>
 						
+						<a class="btn" data-bs-toggle="dropdown"
+							id="#danhmuc">Danh mục</a>
 						<!-- list danh muc -->
-						<li class="nav-item"><a class="nav-link" href="/PH14045_HaVietAnh_Assignment/user/shop">Shop</a></li>
+						<ul class="dropdown-menu start-50" aria-labelledby="danhmuc">
+							<c:forEach items="${sessionScope.listCates }" var="cates">
+								<li><a class="dropdown-item" href="/cart/shop?id=${cates.id }">
+									${cates.name}</a></li>
+							</c:forEach>
+						</ul> 
+						<li class="nav-item">
+							<a class="nav-link" href="/cart/show-cart">Giỏ hàng</a>
+						</li>
+						
 					</ul>
 					
 				</div>
 				<div class="navbar align-self-center d-flex">	
+						
 					<c:if test="${!empty sessionScope.account && sessionScope.account.role==1}">
 						<a class="nav-icon position-relative text-decoration-none dropdown-toggle"
 							href="#" id="manage" data-bs-toggle="dropdown"> <i
@@ -85,9 +96,11 @@
 						</a>
 						<ul class="dropdown-menu"
 							aria-labelledby="manage">
-							<li><a class="dropdown-item" href="#">Tài khoản</a></li>
-							<li><a class="dropdown-item" href="">Thể loại</a></li>
-							<li><a class="dropdown-item" href="/towel/get-all">Sản phẩm</a></li>
+							<li><a class="dropdown-item" href="/admin/users/get-all">Tài khoản</a></li>
+							<li><a class="dropdown-item" href="/admin/categories/get-all">Thể loại</a></li>
+							<li><a class="dropdown-item" href="/admin/towels/get-all">Sản phẩm</a></li>
+							<hr>
+							<li><a class="dropdown-item" href="/admin/orders/get-all">Đơn hàng</a></li>
 						</ul>
 					</c:if>
 					<a class="nav-icon position-relative text-decoration-none dropdown-toggle"
@@ -129,13 +142,12 @@
 					<h2 class="h2 text-success border-bottom pb-3 border-light logo">VANH
 						Shop</h2>
 					<ul class="list-unstyled text-light footer-link-list">
-						<li><i class="fas fa-map-marker-alt fa-fw"></i> 123
-							Consectetur at ligula 10660</li>
+						<li><i class="fas fa-map-marker-alt fa-fw"></i> Hà Nội</li>
 						<li><i class="fa fa-phone fa-fw"></i> <a
-							class="text-decoration-none" href="tel:010-020-0340">010-020-0340</a>
+							class="text-decoration-none" href="tel:010-020-0340">098-429-7473</a>
 						</li>
 						<li><i class="fa fa-envelope fa-fw"></i> <a
-							class="text-decoration-none" href="mailto:info@company.com">info@company.com</a>
+							class="text-decoration-none" href="mailto:info@company.com">anhhv492@gmail.com</a>
 						</li>
 					</ul>
 				</div>
@@ -226,12 +238,11 @@
 				</div>
 			</div>
 		</div>
-
+		
 	</footer>
 	<!-- End Footer -->
 
 	<!-- Start Script -->
-
 	<script src="/js/jquery.min.js"></script>
 	<script src="/js/popper.min.js"></script>
 	<script src="/js/bootstrap.min.js"></script>

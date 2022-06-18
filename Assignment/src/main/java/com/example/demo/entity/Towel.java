@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -34,13 +36,24 @@ public class Towel {
 	private int count;
 	@Column
 	private String name;
+	@Column
+	private String brand;
+	
 	@Column(name="created_date")
 	private Date createdDate;
 	
 	@ManyToOne
-	@JoinColumn(name="category_Id")
+	@JoinColumn(name="category_id")
 	private Category category;
 	
+	@OneToMany(mappedBy = "towelId")
+	private List<Cart> listCart;
+	public List<Cart> getListCart() {
+		return listCart;
+	}
+	public void setListCart(List<Cart> listCart) {
+		this.listCart = listCart;
+	}
 	public Towel() {
 		// TODO Auto-generated constructor stub
 	}
@@ -104,7 +117,12 @@ public class Towel {
 	public void setMatter(String matter) {
 		this.matter = matter;
 	}
-	
+	public String getBrand() {
+		return brand;
+	}
+	public void setBrand(String brand) {
+		this.brand = brand;
+	}
 	
 	
 //	@ManyToOne

@@ -58,7 +58,7 @@
 
 		</form>
 		<div class="col-4 container">
-			<img src="/PH14045_HaVietAnh_Assignment/img/signup-image.jpg"
+			<img src="/Assignment/img/signup-image.jpg"
 				alt="sing up image">
 		</div>
 	</div>

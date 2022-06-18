@@ -3,7 +3,7 @@
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %> 
 	<div class="container">
-		<form:form action="/towel/insert" method="post" class="form-group" modelAttribute="towelModel">
+		<form:form action="/admin/towel/insert" method="post" class="form-group" modelAttribute="towelModel">
 			<div class="col-10">
 				<div class="form-group mt-3">
 					<label for="name">Thể loại</label> 
@@ -32,7 +32,7 @@
 				</div>	
 				<div class="form-group mt-3">
 					<label for="name"><i
-						class="zmdi zmdi-card"></i></label>
+						class="zmdi zmdi-compare"></i></label>
 						<form:input path="matter" placeholder="Chất vải" cssClass="form-control" required="required" />
 				</div>	
 				<div class="form-group mt-3">
@@ -44,6 +44,11 @@
 					<label for="name"><i
 						class="zmdi zmdi-grid"></i></label>
 						<form:input path="size" placeholder="Kích thước" cssClass="form-control" required="required" />
+				</div>
+				<div class="form-group mt-3">
+					<label for="name"><i
+						class="zmdi zmdi-grid"></i></label>
+						<form:input path="brand" placeholder="Nhà sản xuất" cssClass="form-control" required="required" />
 				</div>
 				<div class="form-group mt-3">
 					<label for="name"><i

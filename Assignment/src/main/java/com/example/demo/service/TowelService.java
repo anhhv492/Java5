@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,13 +25,13 @@ public class TowelService {
 	public List<Towel> getAll() {
 		return repository.findAll();
 	}
-	public List<Towel> selectPagination(Pageable page) {
-		return (List<Towel>) repository.findAll(page);
+	public Page<Towel> selectPagination(Pageable page) {
+		Page<Towel> list = repository.findAll(page);
+		return list;
 	}
 	// insert row
 	public void insert(Towel towel) {
-		Date now = new Date();
-		towel.setCreatedDate(now);
+		
 		repository.save(towel);
 	}
 

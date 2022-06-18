@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.example.demo.entity.Category;
 
 public interface ICategoryRepository extends JpaRepository<Category, Integer>{
-	
+	Category findByNameLike(String name);
 }
