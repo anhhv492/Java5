@@ -12,7 +12,6 @@
 	<link rel="stylesheet" href="/css/custom.css">
 	<!-- Load fonts style after rendering the layout styles -->
 	<link rel="stylesheet" href="/css/fontawesome.min.css">
-	<!-- load  login, sign up -->
 	<link rel="stylesheet" href="/fonts/material-icon/css/material-design-iconic-font.min.css">
     <script src="js/sweetalert2.min.js"></script>
 </head>
